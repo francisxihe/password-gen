@@ -8,7 +8,7 @@ export const useChangePwdLength = (form: FormInstance) => {
   return useEffect(() => {
     switch (modeValue) {
       case EPasswordMode.Complex:
-        form.setFieldValue("length", 20);
+        form.setFieldValue("length", '');
         break;
       case EPasswordMode.Simple:
         form.setFieldValue("length", 12);

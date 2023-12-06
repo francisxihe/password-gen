@@ -1,4 +1,4 @@
-import { Modal, Input } from "antd";
+import { Modal, Input, message } from "antd";
 import copy from "copy-to-clipboard";
 
 const Password = (props: {
@@ -8,7 +8,12 @@ const Password = (props: {
   const { setVisible, password } = props;
 
   const handleOk = () => {
-    copy(password);
+    try {
+      copy(password);
+      message.success("密码复制成功");
+    } catch (e) {
+      message.error("密码复制失败");
+    }
   };
 
   const handleCancel = () => {
@@ -17,7 +22,7 @@ const Password = (props: {
 
   return (
     <Modal
-      title="Basic Modal"
+      title="密码"
       open={true}
       okText="复制"
       cancelText="关闭"

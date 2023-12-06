@@ -77,7 +77,7 @@ function App() {
         <Form.Item name="suffix" label="后缀">
           <Input.Password />
         </Form.Item>
-        <Form.Item name="length" label="密码长度" rules={[{ required: true }]}>
+        <Form.Item name="length" label="密码长度">
           <Input type="number" />
         </Form.Item>
         <Form.Item>

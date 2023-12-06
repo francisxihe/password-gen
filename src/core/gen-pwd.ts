@@ -6,14 +6,21 @@ interface IGenPwdOption {
   key: string;
   account: string;
   mode: EPasswordMode;
-  prefix: string;
-  suffix: string;
-  length: number;
+  prefix?: string;
+  suffix?: string;
+  length?: number;
 }
 
 export function genPwd(option: IGenPwdOption) {
-  const { source, key, account, mode, prefix, suffix, length } = option;
-  const sigBytes = length - prefix.length - suffix.length;
+  const {
+    source,
+    key,
+    account,
+    mode,
+    prefix = "",
+    suffix = "",
+    length,
+  } = option;
 
   if (!source) {
     throw new Error("source不能为空");
@@ -30,7 +37,9 @@ export function genPwd(option: IGenPwdOption) {
 
   const aes = HmacSHA3(source + ":" + account, key);
 
-  aes.sigBytes = sigBytes;
+  if (length) {
+    aes.sigBytes = calcSigBytes(length - prefix.length - suffix.length);
+  }
 
   switch (mode) {
     case EPasswordMode.Simple:
@@ -40,4 +49,8 @@ export function genPwd(option: IGenPwdOption) {
     case EPasswordMode.Normal:
       return prefix + aes.toString(enc.Base64url) + suffix;
   }
+}
+
+function calcSigBytes(base64Length: number) {
+  return (base64Length * 6) / 8;
 }
