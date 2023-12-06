@@ -2,7 +2,6 @@
   "name": "my-secret-gen",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
@@ -68,7 +67,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "node  scripts/build.js PUBLIC_URL=/docs",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
