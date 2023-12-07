@@ -31,7 +31,7 @@ export const useChangePrefixLength = (form: FormInstance) => {
       case EPasswordMode.Complex:
       case EPasswordMode.Normal:
       default:
-        form.setFieldValue("prefix", "!");
+        form.setFieldValue("prefix", "!1q");
     }
   }, [form, modeValue]);
 };
@@ -47,7 +47,7 @@ export const useChangeSuffixLength = (form: FormInstance) => {
       case EPasswordMode.Complex:
       case EPasswordMode.Normal:
       default:
-        form.setFieldValue("suffix", "@");
+        form.setFieldValue("suffix", "@2W");
     }
   }, [form, modeValue]);
 };
